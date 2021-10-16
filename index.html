@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+
+<h1>popup-confirm demo</h1>
+
+<button id=btn>ポップアップ！</button>
+<br><br>
+<button id=btn2>await ポップアップ！</button>
+
+<script type="module">
+import { PopupConfirm } from "./popup-confirm.js";
+
+btn.onclick = () => PopupConfirm.show("やほー、confirm！");
+
+btn2.onclick = async () => {
+  const res = await PopupConfirm.show("await 本当にいい？");
+  alert("結果は " + res);
+};
+
+</script>
+
+<style>
+@import "popup-confirm.css";
+</style>
+
+<footer style="margin-top: 2em;"><a href=https://github.com/code4fukui/popup-confirm/>Code for FUKUI src on GitHub</a></footer>
+
+</body>
+</html>
