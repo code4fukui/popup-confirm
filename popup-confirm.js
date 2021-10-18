@@ -1,17 +1,24 @@
 import { create } from "https://js.sabae.cc/stdcomp.js";
 
 class PopupConfirm extends HTMLElement {
-  constructor(s, callback) {
+  constructor(s, callback, opts) { // opts.opposite -> キャンセル OK
     super();
     const txt = s || this.innerHTML;
     this.innerHTML = "";
     const c = create("div", this, "base");
     create("div", c, "message").textContent = txt;
     const btns = create("div", c, "btns");
-    const btn = create("button", btns, "button");
+    const btn = create("button");
     btn.textContent = "OK";
-    const btnno = create("button", btns, "button");
+    const btnno = create("button");
     btnno.textContent = "キャンセル";
+    if (opts?.opposite) {
+      btns.appendChild(btnno);
+      btns.appendChild(btn);
+    } else {
+      btns.appendChild(btn);
+      btns.appendChild(btnno);
+    }
     const close = (b) => {
       this.parentElement.removeChild(this);
       callback(b);
@@ -34,9 +41,9 @@ class PopupConfirm extends HTMLElement {
     };
     window.addEventListener("keydown", listener);
   }
-  static show(s) {
+  static show(s, opposite = false) {
     return new Promise((resolve) => {
-      document.body.appendChild(new PopupConfirm(s, resolve));
+      document.body.appendChild(new PopupConfirm(s, resolve, { opposite }));
     });
   }
 }

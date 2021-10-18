@@ -12,7 +12,12 @@ import { PopupConfirm } from "./popup-confirm.js";
 btn.onclick = () => PopupConfirm.show("やほー、confirm！");
 
 btn2.onclick = async () => {
-  const res = await PopupConfirm.show("await 本当にいい？");
+  let res = false;
+  if (await PopupConfirm.show("いいですか？")) {
+    if (await PopupConfirm.show("本当にいいですか？", true)) {
+      res = true;
+    }
+  }
   alert("結果は " + res);
 };
 
