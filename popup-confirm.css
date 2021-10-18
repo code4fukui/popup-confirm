@@ -15,7 +15,7 @@ popup-confirm .base {
   width: 80vw;
   padding: 5vh 5vw;
   text-align: center;
-  overflow: scroll;
+  x-overflow: scroll;
   font-size: 140%;
   border-radius: .2em;
 }
