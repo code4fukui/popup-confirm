@@ -1,7 +1,7 @@
 import { create } from "https://js.sabae.cc/stdcomp.js";
 
 class PopupConfirm extends HTMLElement {
-  constructor(s, callback, opts) { // opts.opposite -> キャンセル OK
+  constructor(s, callback, opts) { // opts.opposite -> キャンセル OK、opts.focusCancel -> キャンセルにフォーカス
     super();
     const txt = s || this.innerHTML;
     this.innerHTML = "";
@@ -33,17 +33,29 @@ class PopupConfirm extends HTMLElement {
     }
     const listener = (e) => {
       if (e.key == "Enter") {
-        close(true);
+        const res = btn.classList.contains("focus");
+        close(res);
       } else if (e.key == "Escape") {
         close(false);
+      } else if (e.key == "Tab") {
+        btn.classList.toggle("focus");
+        btnno.classList.toggle("focus");
       }
       e.preventDefault();
     };
     window.addEventListener("keydown", listener);
+    if (opts.focusCancel) {
+      btnno.classList.add("focus");
+    } else {
+      btn.classList.add("focus");
+    }
   }
-  static show(s, opposite = false) {
+  static show(s, opt = false) {
+    if (typeof opt == "boolean") {
+      opt = { opposite: opt };
+    }
     return new Promise((resolve) => {
-      document.body.appendChild(new PopupConfirm(s, resolve, { opposite }));
+      document.body.appendChild(new PopupConfirm(s, resolve, opt));
     });
   }
 }

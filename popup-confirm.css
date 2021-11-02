@@ -31,3 +31,6 @@ popup-confirm .btns {
   grid-template-columns: 1fr 1fr;
   grid-gap: .5em;
 }
+popup-confirm button.focus {
+  outline: 2px solid blue;
+}

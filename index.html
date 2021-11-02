@@ -4,12 +4,21 @@
 
 <button id=btn>ポップアップ！</button>
 <br><br>
-<button id=btn2>await ポップアップ！</button>
+<button id=btn2>逆ポップアップ！</button>
+<br><br>
+<button id=btn3>フォーカスはキャンセルでポップアップ！</button>
+<br><br>
+<button id=btn4>フォーカスはキャンセルで逆ポップアップ！</button>
+<br><br>
+結果は <span id=mes></span>
+<br><br>
 
 <script type="module">
 import { PopupConfirm } from "./popup-confirm.js";
 
-btn.onclick = () => PopupConfirm.show("やほー、confirm！");
+btn.onclick = async () => {
+  mes.textContent = await PopupConfirm.show("やほー、confirm！");
+};
 
 btn2.onclick = async () => {
   let res = false;
@@ -18,7 +27,14 @@ btn2.onclick = async () => {
       res = true;
     }
   }
-  alert("結果は " + res);
+  mes.textContent = res;
+};
+
+btn3.onclick = async () => {
+  mes.textContent = await PopupConfirm.show("やほー、confirm！", { focusCancel: true });
+};
+btn4.onclick = async () => {
+  mes.textContent = await PopupConfirm.show("やほー、confirm！", { opposite: true, focusCancel: true });
 };
 
 </script>
