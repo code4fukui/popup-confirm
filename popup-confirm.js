@@ -37,7 +37,7 @@ class PopupConfirm extends HTMLElement {
         close(res);
       } else if (e.key == "Escape") {
         close(false);
-      } else if (e.key == "Tab") {
+      } else if (e.key == "Tab" || e.key == "ArrowRight" || e.key == "ArrowLeft") {
         btn.classList.toggle("focus");
         btnno.classList.toggle("focus");
       }
