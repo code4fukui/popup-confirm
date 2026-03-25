@@ -1,33 +1,25 @@
 # popup-confirm
-日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
 
-A simple pop-up confirmation dialog component for web applications.
+A Web/Code project by [Code for FUKUI](https://github.com/code4fukui).
 
-## Demo
-[Interactive demo](https://code4fukui.github.io/popup-confirm/)
+**Live demo**: https://code4fukui.github.io/popup-confirm/
 
-## Features
-- Customizable message and button text
-- Configurable button order (OK/Cancel or Cancel/OK)
-- Keyboard support (Enter, Escape, Tab, Arrow keys)
-- Focused button indication
-- Closes on background click
+## Technology Stack
 
-## Usage
-To use the `popup-confirm` component, import it and call the `show()` method:
+**Browser modules (ES imports):**
 
-```javascript
-import { PopupConfirm } from './popup-confirm.js';
+- [`stdcomp.js`](https://js.sabae.cc/stdcomp.js)
 
-const result = await PopupConfirm.show('Are you sure?');
-console.log(result); // true if OK, false if Cancel
-```
 
-You can also pass options to customize the dialog:
+## Installation & Setup
 
-```javascript
-const result = await PopupConfirm.show('Are you sure?', { opposite: true, focusCancel: true });
-```
+No build step required. Clone the repository and open `index.html` in a browser,
+or visit the live demo at https://code4fukui.github.io/popup-confirm/
+
+## Contributing
+
+Contributions are welcome. Please open an issue or pull request on GitHub.
 
 ## License
-This project is licensed under the [MIT License](LICENSE).
+
+MIT License. See [LICENSE](./LICENSE) for details.
